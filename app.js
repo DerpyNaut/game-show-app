@@ -13,6 +13,7 @@ startButton.addEventListener('click', () => {
   startOverlay.style.display = 'none';
   startButton.style.display = 'none';
   title.style.display = 'none';
+  addPhraseToDisplay(getRandomPhraseAsArray(phrases));
 });
 
 function getRandomPhraseAsArray (arr) {
@@ -33,23 +34,21 @@ function addPhraseToDisplay(arr) {
   }
 }
 
-
 function checkLetter (input) {
   const letters = document.querySelectorAll('.letter');
+  const stored = [];
   console.log(letters);
   for (var i = 0; i < letters.length; i++) {
-    if (letters[i].textContent == input) {
+    if (letters[i].textContent.toLowerCase() === input.toLowerCase()) {
       letters[i].style.color = 'rgb(0, 0, 0)';
-      const stored = letters[i];
+      stored.push(letters[i]);
       console.log('yo');
-      return stored;
-    } else {
-      return null;
     }
   }
+  return stored;
 }
 
-addPhraseToDisplay(getRandomPhraseAsArray(phrases));
+
 
 qwerty.addEventListener('keydown', (e) => {
   for (var i = 0; i < btn.length; i++) {
