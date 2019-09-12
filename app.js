@@ -7,7 +7,7 @@ const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('.start');
 const title = document.querySelector('.title');
 const btn = document.querySelectorAll('.keyrow button');
-const tries = document.querySelectorAll('.tries').parentElement;
+
 
 
 const phrases = ['Frog is rapidly getting angry', 'Coding is fun', 'Playing games is not fun', 'Corgi is derping around', 'Snake eater'];
@@ -51,7 +51,9 @@ function checkLetter (input) {
   } else {
     letterFound = false;
     missed += 1;
-    tries.removeChild(tries.lastChild);
+    const triesField = document.querySelector('.tries').parentNode;
+    const tries = document.querySelectorAll('.tries');
+    triesField.removeChild(tries[0]);
   }
   console.log(stored);
   return stored;
