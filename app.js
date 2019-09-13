@@ -15,6 +15,7 @@ startButton.addEventListener('click', () => {
   startOverlay.style.display = 'none';
   startButton.style.display = 'none';
   title.style.display = 'none';
+  missed = 0;
   addPhraseToDisplay(getRandomPhraseAsArray(phrases));
   gameOn = true;
 });
@@ -70,6 +71,7 @@ function checkWin() {
       startOverlay.prepend(endText);
       startButton.style.display = '';
       gameOn = false;
+      clearGame();
   } else if (missed >= 5) {
       startOverlay.style.display = '';
       startOverlay.className += ' lose';
@@ -78,6 +80,15 @@ function checkWin() {
       startOverlay.prepend(endText);
       startButton.style.display = '';
       gameOn = false;
+      clearGame();
+  }
+};
+
+function clearGame() {
+  phrase.textContent = '';
+  for (var i = 0; i < btn.length; i++) {
+      btn[i].className = '';
+      btn[i].removeAttribute('disabled');
   }
 };
 
