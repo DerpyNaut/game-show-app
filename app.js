@@ -35,6 +35,8 @@ function addPhraseToDisplay(arr) {
     phrase.appendChild(li);
     if (li.innerHTML !== " ") {
       li.className = 'letter';
+    } else {
+      li.className = 'space';
     }
   }
 };
@@ -107,15 +109,23 @@ function clearGame() {
   }
 };
 
-document.addEventListener('keydown', (e) => {
+document.addEventListener('keydown', (e) => gameCheck(e));
+document.addEventListener('click', (e) => gameCheck(e));
+
+function gameCheck(e) {
+  console.log(e.textContent);
   if (gameOn) {
     for (var i = 0; i < btn.length; i++) {
-      if (e.key == btn[i].textContent && btn[i].hasAttribute('disabled') === false) {
+      if (e.textContent == btn[i].textContent || e.key == btn[i].textContent && btn[i].hasAttribute('disabled') === false) {
         btn[i].className = ' chosen';
         btn[i].setAttribute('disabled', '');
+        if (e.key) {
         checkLetter(e.key);
+      } else {
+        checkLetter(e.textContent);
+      }
       }
     }
   checkWin();
   }
-});
+};
