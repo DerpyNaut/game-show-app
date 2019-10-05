@@ -113,16 +113,16 @@ document.addEventListener('keydown', (e) => gameCheck(e));
 document.addEventListener('click', (e) => gameCheck(e));
 
 function gameCheck(e) {
-  console.log(e.textContent);
+  console.log(e.target.innerHTML);
   if (gameOn) {
     for (var i = 0; i < btn.length; i++) {
-      if (e.textContent == btn[i].textContent || e.key == btn[i].textContent && btn[i].hasAttribute('disabled') === false) {
+      if (e.target.innerHTML == btn[i].textContent || e.key == btn[i].textContent && btn[i].hasAttribute('disabled') === false) {
         btn[i].className = ' chosen';
         btn[i].setAttribute('disabled', '');
         if (e.key) {
         checkLetter(e.key);
       } else {
-        checkLetter(e.textContent);
+        checkLetter(e.target.innerHTML);
       }
       }
     }
