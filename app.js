@@ -7,7 +7,7 @@ const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('.start');
 const title = document.querySelector('.title');
 const btn = document.querySelectorAll('.keyrow button');
-var gameOn = false;
+let gameOn = false;
 
 const phrases = ['Frog is rapidly getting angry', 'Coding is fun', 'Playing games is not fun', 'Corgi is derping around', 'Snake eater'];
 
@@ -113,7 +113,6 @@ document.addEventListener('keydown', (e) => gameCheck(e));
 document.addEventListener('click', (e) => gameCheck(e));
 
 function gameCheck(e) {
-  console.log(e.target.innerHTML);
   if (gameOn) {
     for (var i = 0; i < btn.length; i++) {
       if (e.target.innerHTML == btn[i].textContent || e.key == btn[i].textContent && btn[i].hasAttribute('disabled') === false) {
