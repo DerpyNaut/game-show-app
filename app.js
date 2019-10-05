@@ -11,6 +11,7 @@ var gameOn = false;
 
 const phrases = ['Frog is rapidly getting angry', 'Coding is fun', 'Playing games is not fun', 'Corgi is derping around', 'Snake eater'];
 
+
 startButton.addEventListener('click', () => {
   startOverlay.style.display = 'none';
   startButton.style.display = 'none';
@@ -52,7 +53,7 @@ function checkLetter (input) {
   } else {
     letterFound = false;
     missed += 1;
-    const triesField = document.querySelector('.tries').parentNode;
+    const triesField = document.querySelector('#scoreboard ol');
     const tries = document.querySelectorAll('.tries');
     triesField.removeChild(tries[0]);
   }
@@ -65,19 +66,17 @@ function checkWin() {
   const shown = document.querySelectorAll('.show');
   if (letters.length === shown.length) {
       startOverlay.style.display = '';
-      startOverlay.className += ' win';
-      const endText = document.createElement('p');
-      endText.textContent = 'You won!';
-      startOverlay.prepend(endText);
+      startOverlay.className = 'win';
+      title.style.display = '';
+      title.textContent = 'You won!';
       startButton.style.display = '';
       gameOn = false;
       clearGame();
   } else if (missed >= 5) {
       startOverlay.style.display = '';
-      startOverlay.className += ' lose';
-      const endText = document.createElement('p');
-      endText.textContent = 'You lose!';
-      startOverlay.prepend(endText);
+      startOverlay.className = 'lose';
+      title.style.display = '';
+      title.textContent = 'You lose!';
       startButton.style.display = '';
       gameOn = false;
       clearGame();
@@ -89,6 +88,22 @@ function clearGame() {
   for (var i = 0; i < btn.length; i++) {
       btn[i].className = '';
       btn[i].removeAttribute('disabled');
+  }
+
+  const triesField = document.querySelector('div#scoreboard ol');
+  triesField.innerHTML = '';
+
+  for (var i = 0; i < 5; i++) {
+    const li = document.createElement('li');
+    li.className = 'tries';
+
+    const img = document.createElement('img');
+    img.src = 'images/liveHeart.png';
+    img.height = '35';
+    img.width = '30';
+
+    li.appendChild(img);
+    triesField.appendChild(li);
   }
 };
 

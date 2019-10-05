@@ -53,6 +53,7 @@ button {
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
+  outline: none;
 }
 
 .main-container {
@@ -95,6 +96,7 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  transition: all 1s;
 }
 
 /* Keyboard */
